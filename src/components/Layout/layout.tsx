@@ -21,8 +21,8 @@ export const Layout = () => {
           <DailyForecast />
           <WeeklyForecast />
         </Grid>
-        <Grid item xs={8}>
-          <Map />
+        <Grid item xs={8} spacing={2}>
+          <Map position={{ lat: 17.4468019, lng: 78.3102378 }} />
         </Grid>
       </Grid>
     </Box>

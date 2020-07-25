@@ -6,5 +6,6 @@ export default {
   DAILY_FORECAST_DAYS_COUNT: 7,
   HOURLY_FORECAST_HOURS_COUNT: 12,
   // Unit Default: Kelvin, Metric: , Imperial: Fahrenheit.
-  UNIT: "metric", // to get data in Celsius
+  UNIT: "metric", // to get data in Celsius,
+  EXCLUDE_FORECAST: "",
 };

@@ -1,20 +1,19 @@
 import Box from "@material-ui/core/Box";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Divider from "@material-ui/core/Divider";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
 import React from "react";
-import useFetch from "../hooks";
+import { Hourly } from "../Forecast/interfaces";
 import { ForecastComponentBaseProps } from "../interfaces";
 import { useWeatherAppStyles } from "../styles";
-import { getUrl } from "../utils";
-import { HourlyForecastResponse, List } from "./interfaces";
-interface HourlyForecastProps extends ForecastComponentBaseProps {}
+import { getFormattedTime } from "../utils";
+interface HourlyForecastProps extends ForecastComponentBaseProps {
+  data: Hourly[];
+}
 export const HourlyForecast = (props: HourlyForecastProps) => {
   const classes = useWeatherAppStyles(props);
-  const url = getUrl("hourly-forecast", props.position);
-  const { loading, data, error } = useFetch(url);
+  const { loading } = props;
   return (
     <Box>
       <Box className={clsx(classes.background, classes.content)}>
@@ -36,7 +35,7 @@ export const HourlyForecast = (props: HourlyForecastProps) => {
             <CircularProgress size={25} />
           ) : (
             <>
-              <RenderForecastData data={data} error={error} />
+              <RenderHourlyForecastData {...props} />
             </>
           )}
         </Box>
@@ -45,48 +44,39 @@ export const HourlyForecast = (props: HourlyForecastProps) => {
   );
 };
 
-const RenderForecastData = (props: {
-  data: HourlyForecastResponse;
-  error: Error;
-}): any => {
-  const { data } = props;
-  const { list, city } = data || {};
+const RenderHourlyForecastData = (props: HourlyForecastProps): any => {
+  const { data, error, timeZone } = props;
   const classes = useWeatherAppStyles({});
-  if (list && list.length) {
-    return list.map((_data: List, key: number) => (
+  if (data && data.length) {
+    return data.map((hour: Hourly, key: number) => (
       <Box className={classes.newListItem} key={key}>
         <Box className={classes.fxVCenter}>
-          <Grid container spacing={0}>
-            <Grid item xs>
-              <Typography
-                className={clsx(
-                  classes.newListItemTitle,
-                  classes.ellipsisBy210
-                )}
-              >
-                {`${new Date(_data.dt).getHours() + 1}:00`}
-              </Typography>
-            </Grid>
-            <Grid item xs>
-              <img
-                src={`http://openweathermap.org/img/wn/${_data.weather[0].icon}.png`}
-                alt={_data.weather[0].description}
-              />
-            </Grid>
-            <Grid item xs>
-              <Typography
-                className={clsx(
-                  classes.newListItemTitle,
-                  classes.ellipsisBy210
-                )}
-              >
-                {`${_data.main.temp_min}&#176 C/${_data.main.temp_max}&#176 C`}
-              </Typography>
-            </Grid>
-          </Grid>
+          <Box>
+            <Typography
+              className={clsx(classes.newListItemTitle, classes.ellipsisBy210)}
+            >
+              {getFormattedTime(timeZone, hour.dt)}
+            </Typography>
+          </Box>
+          <Box>
+            <Typography
+              className={clsx(classes.newListItemTitle, classes.ellipsisBy210)}
+            >
+              {hour.temp} ℉ / {hour.feels_like} ℉
+            </Typography>
+          </Box>
+          <Box>
+            <img
+              src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}.png`}
+              alt={hour.weather[0].description}
+            />
+          </Box>
         </Box>
       </Box>
     ));
+  }
+  if (error) {
+    return "Error loading data, please try another location";
   }
   return null;
 };

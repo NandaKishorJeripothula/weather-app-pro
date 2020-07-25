@@ -21,7 +21,10 @@ export interface DailyForecastResponseCity {
 }
 
 export interface ForecastComponentBaseProps {
-  position: Position;
-  city?: City;
-  setCity?: (data: City) => void;
+  data: any;
+  error: Error;
+  loading: boolean;
+  timeZone: string;
 }
+
+export type ForecastType = "current" | "minutely" | "hourly" | "daily";

@@ -61,7 +61,7 @@ export const useWeatherAppStyles = makeStyles({
     borderRadius: "2px",
   },
   newListItemTitle: {
-    fontSize: "12px",
+    fontSize: "14px",
     lineHeight: "20px",
     color: "#000000",
   },

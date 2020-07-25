@@ -1,8 +1,7 @@
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import React, { useState } from "react";
-import DailyForecast from "../DailyForecast";
-import HourlyForecast from "../HouryForecast";
+import { Forecast } from "../Forecast";
 import { Position } from "../interfaces";
 import Map from "../Map";
 import { useWeatherAppStyles } from "../styles";
@@ -25,8 +24,7 @@ export const Layout = () => {
       >
         <Grid item xs={4}>
           <Title title="Weather Map Pro" />
-          <HourlyForecast position={position} />
-          <DailyForecast position={position} />
+          <Forecast position={position} />
         </Grid>
         <Grid item xs={8}>
           <Map position={position} onPositionChange={setPosition} />

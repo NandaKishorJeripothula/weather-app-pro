@@ -3,11 +3,13 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
 import React from "react";
+import { ForecastComponentBaseProps } from "../interfaces";
 import { useWeatherAppStyles } from "../styles";
-
-interface DailyForecastProps {}
+interface DailyForecastProps extends ForecastComponentBaseProps {}
 export const DailyForecast = (props: DailyForecastProps) => {
   const classes = useWeatherAppStyles(props);
+  // const { data, loading, error } = useFetch();
+
   return (
     <Box>
       <Box className={clsx(classes.background, classes.content)}>

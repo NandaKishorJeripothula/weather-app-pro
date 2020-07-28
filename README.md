@@ -8,6 +8,8 @@
 - **React-Leaflet**
 - Open Weather API
 
+**Live Version** : https://shruthi-thupakula.github.io/weather-app-pro/
+
 ### This application doesn't depend on any backend except the APIs used
 
 > It uses the live location of the user with the help of `navigator.geolocation()` class available in JavaScript

@@ -12,7 +12,10 @@ export const Title = (props: TitleProps) => {
     <Box
       className={clsx(classes.background, classes.content, classes.profileCard)}
     >
-      <Typography className={clsx(classes.blackClr, classes.person)}>
+      <Typography
+        className={clsx(classes.blackClr, classes.person)}
+        style={{ fontSize: "18px" }}
+      >
         {props.title}
       </Typography>
     </Box>

@@ -11,7 +11,7 @@ export const useWeatherAppStyles = makeStyles({
   },
 
   person: {
-    fontSize: "12px",
+    fontSize: "16px",
     fontWeight: 600,
     lineHeight: "20px",
     color: "rgba(0, 0, 0, 0.8)",
@@ -27,13 +27,15 @@ export const useWeatherAppStyles = makeStyles({
     color: "rgba(0, 0, 0, 1) !important",
   },
   bgTheme: {
-    backgroundColor: "#eeeeee !important",
+    // backgroundColor: "#eeeeee !important",
+    backgroundColor: "#747373 !important",
   },
 
   listingContainer: {
-    minHeight: "174px",
+    // minHeight: "174px",
     padding: "10px 5px",
-    maxHeight: "176px",
+    // maxHeight: "176px",
+    height: "32vh",
     overflowY: "auto",
   },
   newListItem: {

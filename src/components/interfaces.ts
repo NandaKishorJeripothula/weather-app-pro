@@ -28,3 +28,4 @@ export interface ForecastComponentBaseProps {
 }
 
 export type ForecastType = "current" | "minutely" | "hourly" | "daily";
+export type TEMP_UNIT = "metric" | "default" | "imperial";
